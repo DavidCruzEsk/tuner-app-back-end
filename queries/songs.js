@@ -9,6 +9,4 @@ async function getAllSongs() {
     }
 }
 
-module.exports = {
-    getAllSongs
-}
+module.exports = { getAllSongs };
