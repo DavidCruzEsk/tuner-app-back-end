@@ -15,12 +15,15 @@ songs.get('/', async (req, res) => {
 
 songs.get('/:id', async (req, res) => {
     const { id } = req.params;
-    const song = await getSong(id);
-
-    if (song.id) {
-        res.status(200).json(song);
-    } else {
-        res.status(404).json({ error: 'Song Cannot Be Found' });
+    try {
+        const song = await getSong(id);
+        if (song.id) {
+            res.status(200).json(song);
+        } else {
+            res.status(404).json({ error: 'Song not Found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
